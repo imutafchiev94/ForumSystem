@@ -1,0 +1,32 @@
+﻿@model ForumSystem.App.Areas.Admin.ViewModels.Comments.AllCommentsViewModel
+@using ForumSystem.App.Common
+
+@foreach (var comment in Model.Comments)
+{
+    <br />
+    <div class="card w-100">
+        <div class="card-body">
+            <div class="row">
+                <h5 class="text-left col-6">@TimeFormat.Posted(comment.DateOfPost)</h5>
+                <h5 class="text-right col-6">Posted by @comment.Author.UserName</h5>
+            </div>
+            <p id="editText" class="card-text">@comment.Content</p>
+            <div>
+                <a href="#" id="editComment" onclick="Edit()" class="btn btn-primary"><i class="fas fa-edit"></i>Edit</a>
+            </div>
+            
+        </div>
+    </div>
+    <br />
+}
+
+<script>
+    function Edit() {
+
+        $("#save").css("visibility, visible");
+
+        $("#editText").replaceWith(function () {
+            return $("<textarea rows=\"3\" cols=\"30\" class=\"form - control\">").append($(this).contents());
+        })
+    }
+</script>

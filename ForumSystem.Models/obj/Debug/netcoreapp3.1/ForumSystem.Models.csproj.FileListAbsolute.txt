@@ -1,0 +1,9 @@
+D:\ASP.Net LeetSoft\ForumSystem\ForumSystem.Models\bin\Debug\netcoreapp3.1\ForumSystem.Models.deps.json
+D:\ASP.Net LeetSoft\ForumSystem\ForumSystem.Models\bin\Debug\netcoreapp3.1\ForumSystem.Models.dll
+D:\ASP.Net LeetSoft\ForumSystem\ForumSystem.Models\obj\Debug\netcoreapp3.1\ForumSystem.Models.csprojAssemblyReference.cache
+D:\ASP.Net LeetSoft\ForumSystem\ForumSystem.Models\obj\Debug\netcoreapp3.1\ForumSystem.Models.AssemblyInfoInputs.cache
+D:\ASP.Net LeetSoft\ForumSystem\ForumSystem.Models\obj\Debug\netcoreapp3.1\ForumSystem.Models.AssemblyInfo.cs
+D:\ASP.Net LeetSoft\ForumSystem\ForumSystem.Models\bin\Debug\netcoreapp3.1\ForumSystem.Models.pdb
+D:\ASP.Net LeetSoft\ForumSystem\ForumSystem.Models\obj\Debug\netcoreapp3.1\ForumSystem.Models.csproj.CoreCompileInputs.cache
+D:\ASP.Net LeetSoft\ForumSystem\ForumSystem.Models\obj\Debug\netcoreapp3.1\ForumSystem.Models.dll
+D:\ASP.Net LeetSoft\ForumSystem\ForumSystem.Models\obj\Debug\netcoreapp3.1\ForumSystem.Models.pdb

@@ -1,0 +1,56 @@
+﻿@model ForumSystem.App.ViewModels.Topics.TopicsDetialsViewModel
+@using ForumSystem.App.Common
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="text-center">
+    <div class="card">
+        <div class="card-header">
+            @Model.Title
+        </div>
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <p>@Model.Content</p>
+                <footer class="row text-muted font-italic">
+                    <span class="col-md-4 text-left">Posted @TimeFormat.Posted(Model.PostedOn)</span>
+                    <span class="col-md-8 text-right">Author - @Model.Author</span>
+                </footer>
+            </blockquote>
+        </div>
+    </div>
+    <br />
+
+    <ul class="list-group">
+        @foreach (var post in Model.Posts)
+        {
+            <li class="list-group-item m-3">
+                <div class="card-header row">
+                    <span class="col-md-4 p-2 text-left text-muted">Posted @TimeFormat.Posted(post.CreatedOn)</span>
+                    @if (User.Identity.Name == post.Author.UserName)
+                    {
+                        <div class="text-right col-md-8">
+                            <a class="btn btn-info col-md-2 p-2" asp-controller="Posts" asp-action="Edit" asp-route-id="@post.Id">Edit</a>
+                            <a class="btn btn-danger col-md-2 p-2" asp-controller="Posts" asp-action="Delete" asp-route-id="@post.Id">Delete</a>
+                        </div>
+                    }
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">@post.Title</h5>
+                    <p class="card-text">@post.Content<p>
+                </div>
+                <div class="card-footer text-muted row">
+                    <a asp-controller="Posts" asp-action="Details" asp-route-id="@post.Id" class="btn-comment col-md-3 text-left"><i class="fas fa-comment"></i> @post.Comments.Count() Comments</a>
+                    <span class="text-right col-md-9">Author - @post.Author.UserName</span>
+                </div>
+            </li>
+
+        }
+    </ul>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div class="row text-right">
+            <a asp-controller="Posts" asp-action="Create" asp-route-id="@Model.Id" class="btn btn-success col-md-2 text-center"> Create Post</a>
+        </div>
+    }
+</div>

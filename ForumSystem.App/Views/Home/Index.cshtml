@@ -1,0 +1,64 @@
+﻿@model ForumSystem.App.ViewModels.Home.IndexViewModel
+@using ForumSystem.App.Common
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="text-center">
+        <h1 class="display-4">Welcome @User.Identity.Name</h1>
+        <br />
+        <ul class="list-group">
+            @foreach (var topic in Model.Topics)
+            {
+                <li class="list-group-item m-3">
+                    <div class="card-header row">
+                        <span class="col-md-4 p-2 text-left text-muted">Posted @TimeFormat.Posted(topic.CreatedOn)</span>
+                        <div class="text-right col-md-8">
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">@topic.Title</h5>
+                        <p class="card-text">@topic.Content<p>
+                    </div>
+                    <div class="card-footer text-muted row">
+                        <a asp-controller="Topics" asp-action="Details" asp-route-id="@topic.Id" class="btn btn-primary text-center col-md-2">Details</a>
+                        <span class="text-right col-md-10">Author - @topic.Author.UserName</span>
+
+                    </div>
+                </li>
+            }
+
+        </ul>
+    </div>
+}
+else
+{
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <br />
+    <ul class="list-group">
+        @foreach (var topic in Model.Topics)
+        {
+            <li class="list-group-item m-3">
+                <div class="card-header row">
+                    <span class="col-md-4 p-2 text-left text-muted">Posted @TimeFormat.Posted(topic.CreatedOn)</span>
+                    <div class="text-right col-md-8">
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">@topic.Title</h5>
+                    <p class="card-text">@topic.Content<p>
+                </div>
+                <div class="card-footer text-muted row">
+                    <a asp-controller="Topics" asp-action="Details" asp-route-id="@topic.Id" class="btn btn-primary text-center col-md-2">Details</a>
+                    <span class="text-right col-md-10">Author - @topic.Author.UserName</span>
+
+                </div>
+            </li>
+        }
+</div>
+}
+
