@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "t/YF8D0CVSJu3wjaKpTpJiIMXy2XEKqZAwwD3a2MkrmMDfuH0m5mbfC38UPN7Z3cmJuGGZELfljNlNbAuywbRA==",
+  "dgSpecHash": "0nQbbBEt0PkDQqyd3GNRo/DUP7pRPMsUbJp6XPFfEigC89WRt7i9WDwNsMCIhG85rl6CWc4qjGtSKriVDGNZ6w==",
   "success": true,
-  "projectFilePath": "D:\\ASP.Net LeetSoft\\ForumSystem\\ForumSystem.App\\ForumSystem.App.csproj",
+  "projectFilePath": "D:\\ASP.Net LeetSoft\\ForumSystem\\ForumSystem\\ForumSystem.App\\ForumSystem.App.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lenovo\\.nuget\\packages\\jquery\\1.8.0\\jquery.1.8.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\jquery.validation\\1.8.0.1\\jquery.validation.1.8.0.1.nupkg.sha512",

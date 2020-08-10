@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ASP.Net LeetSoft\\ForumSystem\\ForumSystem.Data\\ForumSystem.Data.csproj": {}
+    "D:\\ASP.Net LeetSoft\\ForumSystem\\ForumSystem\\ForumSystem.Data\\ForumSystem.Data.csproj": {}
   },
   "projects": {
-    "D:\\ASP.Net LeetSoft\\ForumSystem\\ForumSystem.Data\\ForumSystem.Data.csproj": {
+    "D:\\ASP.Net LeetSoft\\ForumSystem\\ForumSystem\\ForumSystem.Data\\ForumSystem.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ASP.Net LeetSoft\\ForumSystem\\ForumSystem.Data\\ForumSystem.Data.csproj",
+        "projectUniqueName": "D:\\ASP.Net LeetSoft\\ForumSystem\\ForumSystem\\ForumSystem.Data\\ForumSystem.Data.csproj",
         "projectName": "ForumSystem.Data",
-        "projectPath": "D:\\ASP.Net LeetSoft\\ForumSystem\\ForumSystem.Data\\ForumSystem.Data.csproj",
+        "projectPath": "D:\\ASP.Net LeetSoft\\ForumSystem\\ForumSystem\\ForumSystem.Data\\ForumSystem.Data.csproj",
         "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "D:\\ASP.Net LeetSoft\\ForumSystem\\ForumSystem.Data\\obj\\",
+        "outputPath": "D:\\ASP.Net LeetSoft\\ForumSystem\\ForumSystem\\ForumSystem.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -30,8 +30,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "D:\\ASP.Net LeetSoft\\ForumSystem\\ForumSystem.Models\\ForumSystem.Models.csproj": {
-                "projectPath": "D:\\ASP.Net LeetSoft\\ForumSystem\\ForumSystem.Models\\ForumSystem.Models.csproj"
+              "D:\\ASP.Net LeetSoft\\ForumSystem\\ForumSystem\\ForumSystem.Models\\ForumSystem.Models.csproj": {
+                "projectPath": "D:\\ASP.Net LeetSoft\\ForumSystem\\ForumSystem\\ForumSystem.Models\\ForumSystem.Models.csproj"
               }
             }
           }
@@ -89,14 +89,14 @@
         }
       }
     },
-    "D:\\ASP.Net LeetSoft\\ForumSystem\\ForumSystem.Models\\ForumSystem.Models.csproj": {
+    "D:\\ASP.Net LeetSoft\\ForumSystem\\ForumSystem\\ForumSystem.Models\\ForumSystem.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ASP.Net LeetSoft\\ForumSystem\\ForumSystem.Models\\ForumSystem.Models.csproj",
+        "projectUniqueName": "D:\\ASP.Net LeetSoft\\ForumSystem\\ForumSystem\\ForumSystem.Models\\ForumSystem.Models.csproj",
         "projectName": "ForumSystem.Models",
-        "projectPath": "D:\\ASP.Net LeetSoft\\ForumSystem\\ForumSystem.Models\\ForumSystem.Models.csproj",
+        "projectPath": "D:\\ASP.Net LeetSoft\\ForumSystem\\ForumSystem\\ForumSystem.Models\\ForumSystem.Models.csproj",
         "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "D:\\ASP.Net LeetSoft\\ForumSystem\\ForumSystem.Models\\obj\\",
+        "outputPath": "D:\\ASP.Net LeetSoft\\ForumSystem\\ForumSystem\\ForumSystem.Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

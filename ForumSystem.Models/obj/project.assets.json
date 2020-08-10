@@ -808,11 +808,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\ASP.Net LeetSoft\\ForumSystem\\ForumSystem.Models\\ForumSystem.Models.csproj",
+      "projectUniqueName": "D:\\ASP.Net LeetSoft\\ForumSystem\\ForumSystem\\ForumSystem.Models\\ForumSystem.Models.csproj",
       "projectName": "ForumSystem.Models",
-      "projectPath": "D:\\ASP.Net LeetSoft\\ForumSystem\\ForumSystem.Models\\ForumSystem.Models.csproj",
+      "projectPath": "D:\\ASP.Net LeetSoft\\ForumSystem\\ForumSystem\\ForumSystem.Models\\ForumSystem.Models.csproj",
       "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-      "outputPath": "D:\\ASP.Net LeetSoft\\ForumSystem\\ForumSystem.Models\\obj\\",
+      "outputPath": "D:\\ASP.Net LeetSoft\\ForumSystem\\ForumSystem\\ForumSystem.Models\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

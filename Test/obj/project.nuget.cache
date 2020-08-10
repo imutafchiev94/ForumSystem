@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wprrXvehYviQDntf4r9qL9LD+bzru2GP0w7TdS6ohuztcQAeE+hKxkuenYMP+jtdVZVgWLnduaaQqOnIMkVQLg==",
+  "dgSpecHash": "l0LSIhDW7CRqnxPZLGLaTnme54DJdaZyB0L/o8JO0P11Ds3zFsyJl/rHumOv5Wql+1DWxvBYuhPhX7kMSwTzYw==",
   "success": true,
-  "projectFilePath": "D:\\ASP.Net LeetSoft\\ForumSystem\\Test\\Test.csproj",
+  "projectFilePath": "D:\\ASP.Net LeetSoft\\ForumSystem\\ForumSystem\\Test\\Test.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

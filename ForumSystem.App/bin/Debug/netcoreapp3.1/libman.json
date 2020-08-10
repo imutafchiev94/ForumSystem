@@ -9,6 +9,18 @@
     {
       "library": "jquery-validation-unobtrusive@3.2.11",
       "destination": "wwwroot/lib/jquery-validation-unobtrusive/"
+    },
+    {
+      "library": "react@16.13.1",
+      "destination": "wwwroot/lib/react/"
+    },
+    {
+      "library": "react-dom@16.13.1",
+      "destination": "wwwroot/lib/react-dom/"
+    },
+    {
+      "library": "jqueryui@1.12.1",
+      "destination": "wwwroot/lib/jqueryui/"
     }
   ]
 }

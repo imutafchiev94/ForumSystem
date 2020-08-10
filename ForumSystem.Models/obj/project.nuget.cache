@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "k/vGbn8iSpLHagnU6dj8HPQci1ZVge5mDowHrZ/e+it1ZlVjK2Ww2t+rd/hjDGNoE4Bqlry3O8KqoDny3rnQnQ==",
+  "dgSpecHash": "YKIrNFT1VHPddcd+NXTL+y50gxobuEf3huOZm0ZUemY0nm0k5tBowpfNa2GJHLdoBI9EVB3z+VpUF/7qm88h9w==",
   "success": true,
-  "projectFilePath": "D:\\ASP.Net LeetSoft\\ForumSystem\\ForumSystem.Models\\ForumSystem.Models.csproj",
+  "projectFilePath": "D:\\ASP.Net LeetSoft\\ForumSystem\\ForumSystem\\ForumSystem.Models\\ForumSystem.Models.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.3\\microsoft.aspnetcore.cryptography.internal.3.1.3.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.3\\microsoft.aspnetcore.cryptography.keyderivation.3.1.3.nupkg.sha512",

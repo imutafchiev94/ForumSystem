@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ASP.Net LeetSoft\\ForumSystem\\Test\\Test.csproj": {}
+    "D:\\ASP.Net LeetSoft\\ForumSystem\\ForumSystem\\Test\\Test.csproj": {}
   },
   "projects": {
-    "D:\\ASP.Net LeetSoft\\ForumSystem\\Test\\Test.csproj": {
+    "D:\\ASP.Net LeetSoft\\ForumSystem\\ForumSystem\\Test\\Test.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ASP.Net LeetSoft\\ForumSystem\\Test\\Test.csproj",
+        "projectUniqueName": "D:\\ASP.Net LeetSoft\\ForumSystem\\ForumSystem\\Test\\Test.csproj",
         "projectName": "Test",
-        "projectPath": "D:\\ASP.Net LeetSoft\\ForumSystem\\Test\\Test.csproj",
+        "projectPath": "D:\\ASP.Net LeetSoft\\ForumSystem\\ForumSystem\\Test\\Test.csproj",
         "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "D:\\ASP.Net LeetSoft\\ForumSystem\\Test\\obj\\",
+        "outputPath": "D:\\ASP.Net LeetSoft\\ForumSystem\\ForumSystem\\Test\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

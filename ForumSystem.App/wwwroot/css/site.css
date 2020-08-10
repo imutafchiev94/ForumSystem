@@ -71,6 +71,6 @@ body {
 }
 
 #TopicDeleteModal {
-    display: block;
+    display: inline-block;
+    visibility: hidden;
 }
-
