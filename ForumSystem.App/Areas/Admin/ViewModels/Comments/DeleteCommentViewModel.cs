@@ -7,5 +7,9 @@ namespace ForumSystem.App.Areas.Admin.ViewModels.Comments
 {
     public class DeleteCommentViewModel
     {
+
+        public int Id { get; set; }
+
+        public int PostId { get; set; }
     }
 }

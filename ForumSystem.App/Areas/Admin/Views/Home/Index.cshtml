@@ -8,7 +8,7 @@
     <div class="text-center">
         <h1 class="display-4">Welcome to Admin Panel</h1>
         <br />
-        <a class="btn btn-dark" asp-area="Admin" asp-controller="Topics" asp-action="Create">Create Topic</a>
+        <a class="btn btn-dark" asp-area="Admin" asp-controller="Topics" asp-action="Create"><img src="~/css/icons/icons8-create.svg"/>     Create Topic</a>
         <br />
         <ul class="list-group">
             @foreach (var topic in Model.Topics)
@@ -17,8 +17,8 @@
                     <div class="card-header row">
                         <span class="col-md-4 p-2 text-left text-muted">Posted @TimeFormat.Posted(topic.CreatedOn)</span>
                         <div class="text-right col-md-8">
-                            <a class="btn btn-info col-md-2 p-2" asp-area="Admin" asp-controller="Topics" asp-action="Edit" asp-route-id="@topic.Id">Edit</a>
-                            <a class="btn btn-danger col-md-2 p-2" asp-area="Admin" asp-controller="Topics" asp-action="Delete" asp-route-id="@topic.Id">Delete</a>
+                            <a class="btn btn-info col-md-2 p-2" asp-area="Admin" asp-controller="Topics" asp-action="Edit" asp-route-id="@topic.Id"><img src="~/css/icons/icons8-edit.svg" alt="Edit Topic" /> Edit</a>
+                            <a class="btn btn-danger col-md-2 p-2" asp-area="Admin" asp-controller="Topics" asp-action="Delete" asp-route-id="@topic.Id"><img src="~/css/icons/icons8-trash.svg" alt="Delete Topic" /> Delete</a>
                         </div>
                     </div>
                     <div class="card-body">
@@ -26,7 +26,7 @@
                         <p class="card-text">@topic.Content<p>
                     </div>
                     <div class="card-footer text-muted row">
-                        <a asp-area="Admin" asp-controller="Topics" asp-action="Details" asp-route-id="@topic.Id" class="btn btn-primary text-center col-md-2">Details</a>
+                        <a asp-area="Admin" asp-controller="Topics" asp-action="Details" asp-route-id="@topic.Id" class="btn btn-primary text-center col-md-2"><img src="~/css/icons/icons8-details.svg"/> Details</a>
                         <span class="text-right col-md-10">Author - @topic.Author.UserName</span>
                         
                     </div>

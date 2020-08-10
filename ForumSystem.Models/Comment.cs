@@ -31,6 +31,10 @@ namespace ForumSystem.Models
 
         public IEnumerable<Comment> Replies { get; set; }
 
+        public int ParentCommentId { get; set; }
+
+        public bool IsDelete { get; set; }
+
         [ForeignKey("Post")]
         public int PostId { get; set; }
 

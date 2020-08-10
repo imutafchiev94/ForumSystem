@@ -13,8 +13,14 @@ namespace ForumSystem.App.Areas.Admin.Services.Interfaces
 
         public Task AddComment(AddCommentBindingModel model);
 
-        public Task EditComment(EditCommentBindingModel model);
+        public Task<Comment> EditComment(string content, int id);
 
-        public Task DeleteComment(DeleteCommentViewModel model);
+        public Task DeleteComment(int id);
+
+        public Task<Comment> GetComment(int id);
+
+        public Task AddReply(AddReplyBindingModel model);
+
+        public Task<List<Comment>> GetAllReplies(int id);
     }
 }

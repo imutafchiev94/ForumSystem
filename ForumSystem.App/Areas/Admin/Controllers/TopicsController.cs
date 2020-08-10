@@ -61,9 +61,13 @@ namespace ForumSystem.App.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
+            var topic = await _service.GetTopicAsync(id);
+
             var model = new EditTopicBindingModel
             {
-                Id = id
+                Id = id,
+                Title = topic.Title,
+                Content = topic.Content
             };
 
             return this.View(model);

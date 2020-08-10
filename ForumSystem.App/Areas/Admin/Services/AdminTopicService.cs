@@ -39,7 +39,7 @@ namespace ForumSystem.App.Areas.Admin.Services
 
         public async Task DeleteTopicAsync(DeleteTopicViewModel model)
         {
-            var topic = await _dbContext.Topics.FirstOrDefaultAsync(t => t.Id == model.Id);
+            var topic = await _dbContext.Topics.Where(t => t.IsDelete == false).FirstOrDefaultAsync(t => t.Id == model.Id);
 
             if(topic == null)
             {
@@ -47,7 +47,9 @@ namespace ForumSystem.App.Areas.Admin.Services
             }
             else
             {
-                _dbContext.Topics.Remove(topic);
+                topic.IsDelete = true;
+
+                _dbContext.Topics.Update(topic);
                 await _dbContext.SaveChangesAsync();
             }
         }
@@ -65,14 +67,14 @@ namespace ForumSystem.App.Areas.Admin.Services
 
         public async Task<List<Topic>> GetAllTopicsAsync()
         {
-            var topics = _dbContext.Topics.Include(t => t.Author).ToList();
+            var topics = _dbContext.Topics.Include(t => t.Author).Where(t => t.IsDelete == false).ToList();
 
             return topics;
         }
 
         public async Task<Topic> GetTopicAsync(int id)
         {
-            var topic = await _dbContext.Topics.Include(t => t.Author).Include(t => t.Posts).FirstOrDefaultAsync(t => t.Id == id);
+            var topic = await _dbContext.Topics.Include(t => t.Author).Include(t => t.Posts).Where(t => t.IsDelete == false).FirstOrDefaultAsync(t => t.Id == id);
             if(topic == null)
             {
                 throw new NullReferenceException($"Topic with {id} doesn't exist");

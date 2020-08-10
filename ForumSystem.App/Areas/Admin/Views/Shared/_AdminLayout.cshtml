@@ -22,15 +22,19 @@
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="Admin" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-light" asp-area="Admin" asp-controller="Home" asp-action="Index">
+                            <img src="~/css/icons/icons8-home-page.svg"/> Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="Admin" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-light" asp-area="Admin" asp-controller="Home" asp-action="Privacy">
+                            <img src="~/css/icons/icons8-privacy-policy.svg"/> Privacy</a>
                         </li>
                         @if (User.IsInRole("Admin"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">User</a>
+                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">
+                                    <img src="~/css/icons/icons8-user-male.svg" /> User
+                                </a>
                             </li>
                         }
                     </ul>
@@ -43,7 +47,8 @@
             @RenderBody()
         </main>
     </div>
-
+    <br />
+    <br />
     <footer class="border-top bg-dark footer text-muted">
         <div class="container text-center">
             &copy; 2020 - Forum System - <a asp-area="Admin" asp-controller="Home" asp-action="Privacy">Privacy</a>

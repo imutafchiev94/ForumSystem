@@ -388,7 +388,6 @@ D:\ASP.Net LeetSoft\ForumSystem\ForumSystem\ForumSystem.App\obj\Debug\netcoreapp
 D:\ASP.Net LeetSoft\ForumSystem\ForumSystem\ForumSystem.App\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Home\Index.cshtml.g.cs
 D:\ASP.Net LeetSoft\ForumSystem\ForumSystem\ForumSystem.App\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Posts\Create.cshtml.g.cs
 D:\ASP.Net LeetSoft\ForumSystem\ForumSystem\ForumSystem.App\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Posts\Details.cshtml.g.cs
-D:\ASP.Net LeetSoft\ForumSystem\ForumSystem\ForumSystem.App\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Posts\View.cshtml.g.cs
 D:\ASP.Net LeetSoft\ForumSystem\ForumSystem\ForumSystem.App\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Shared\Error.cshtml.g.cs
 D:\ASP.Net LeetSoft\ForumSystem\ForumSystem\ForumSystem.App\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Shared\_AdminLayout.cshtml.g.cs
 D:\ASP.Net LeetSoft\ForumSystem\ForumSystem\ForumSystem.App\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Shared\_Comments.cshtml.g.cs
@@ -436,3 +435,10 @@ D:\ASP.Net LeetSoft\ForumSystem\ForumSystem\ForumSystem.App\obj\Debug\netcoreapp
 D:\ASP.Net LeetSoft\ForumSystem\ForumSystem\ForumSystem.App\obj\Debug\netcoreapp3.1\ForumSystem.App.dll
 D:\ASP.Net LeetSoft\ForumSystem\ForumSystem\ForumSystem.App\obj\Debug\netcoreapp3.1\ForumSystem.App.pdb
 D:\ASP.Net LeetSoft\ForumSystem\ForumSystem\ForumSystem.App\obj\Debug\netcoreapp3.1\ForumSystem.App.genruntimeconfig.cache
+D:\ASP.Net LeetSoft\ForumSystem\ForumSystem\ForumSystem.App\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Posts\Delete.cshtml.g.cs
+D:\ASP.Net LeetSoft\ForumSystem\ForumSystem\ForumSystem.App\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Posts\Edit.cshtml.g.cs
+D:\ASP.Net LeetSoft\ForumSystem\ForumSystem\ForumSystem.App\obj\Debug\netcoreapp3.1\Razor\Views\Posts\Delete.cshtml.g.cs
+D:\ASP.Net LeetSoft\ForumSystem\ForumSystem\ForumSystem.App\obj\Debug\netcoreapp3.1\Razor\Views\Posts\Edit.cshtml.g.cs
+D:\ASP.Net LeetSoft\ForumSystem\ForumSystem\ForumSystem.App\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Comments.cshtml.g.cs
+D:\ASP.Net LeetSoft\ForumSystem\ForumSystem\ForumSystem.App\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Comments\Details.cshtml.g.cs
+D:\ASP.Net LeetSoft\ForumSystem\ForumSystem\ForumSystem.App\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Shared\_Replies.cshtml.g.cs

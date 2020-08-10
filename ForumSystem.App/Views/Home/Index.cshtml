@@ -24,7 +24,8 @@
                         <p class="card-text">@topic.Content<p>
                     </div>
                     <div class="card-footer text-muted row">
-                        <a asp-controller="Topics" asp-action="Details" asp-route-id="@topic.Id" class="btn btn-primary text-center col-md-2">Details</a>
+                        <a asp-controller="Topics" asp-action="Details" asp-route-id="@topic.Id" class="btn btn-primary text-center col-md-2">
+                        <img src="~/css/icons/icons8-details.svg"/> Details</a>
                         <span class="text-right col-md-10">Author - @topic.Author.UserName</span>
 
                     </div>
@@ -53,7 +54,9 @@ else
                     <p class="card-text">@topic.Content<p>
                 </div>
                 <div class="card-footer text-muted row">
-                    <a asp-controller="Topics" asp-action="Details" asp-route-id="@topic.Id" class="btn btn-primary text-center col-md-2">Details</a>
+                    <a asp-controller="Topics" asp-action="Details" asp-route-id="@topic.Id" class="btn btn-primary text-center col-md-2">
+                        <img src="~/css/icons/icons8-details.svg" /> Details
+                    </a>
                     <span class="text-right col-md-10">Author - @topic.Author.UserName</span>
 
                 </div>

@@ -1,0 +1,60 @@
+﻿@model ForumSystem.App.Areas.Admin.ViewModels.Comments.DetailsCommentViewModel
+@using ForumSystem.App.Common
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="text-center row">
+    <div class="card col-md-12">
+        <div class="card-header row">
+            <p class="text-left col-md-4">Posted @TimeFormat.Posted(Model.Posted)</p>
+            <p class="text-right col-md-4">Posted by @Model.Author</p>
+        </div>
+
+        <div class="card-body row">
+            <p class="card-text col-md-12">@Model.Content</p>
+        </div>
+        <div class="card-footer row">
+            <div class="text-right col-md-12">
+                <a asp-area="Admin" asp-controller="Comments" asp-action="Delete" class="btn btn-danger"><img src="~/css/icons/icons8-trash.svg" /> Delete</a>
+            </div>
+            <hr />
+            <div class="text-center col-md-12">
+                <h6>Add your comment</h6>
+            </div>
+            <div id="divMessage" class="text-danger">
+
+            </div>
+            <form id="CommentForm" data-ajax="true" data-ajax-success="Complete" data-ajax-mode="replace"
+                  data-ajax-update="#AllComments" asp-area="Admin" asp-controller="Comments" asp-action="AddComment" class="col-md-12" data-ajax-method="post">
+                <div class="form-group">
+                    <textarea id="Content" name="Content" rows="3" cols="30" class="form-control"></textarea>
+                </div>
+                <input hidden id="Author" name="Author" value="@User.Identity.Name" />
+                <input hidden id="PostedOn" name="PostedOn" value="@DateTime.UtcNow" />
+                <input hidden id="ParentCommentId" name="ParentCommentId" value="@Model.ParentCommentId" />
+                <div class="text-right">
+                    @Html.AntiForgeryToken()
+                    <button name="" type="submit" class="btn btn-success" id="btnsubmit"><img src="~/css/icons/icons8-chat.svg" /> Add Comment</button>
+                </div>
+            </form>
+        </div>
+        <hr />
+        <a hidden asp-area="Admin" asp-controller="Comments" asp-action="GetAll" asp-route-id="@Model.Id" id="refreshComments"
+           data-ajax="true" data-ajax-method="get" data-ajax-mode="replace" data-ajax-update="#AllComments"></a>
+
+        <div id="AllComments">
+            <partial name="~/Areas/Admin/Views/Shared/_Replies.cshtml" model="@Model.viewModel" />
+        </div>
+    </div>
+    <br />
+</div>
+<br />
+@section Scripts {
+    <script>
+        function myComplete(data) {
+            $("#CommentForm textarea[name=Content]").val('');
+            $("$refreshComments").click();
+        }
+    </script>
+}

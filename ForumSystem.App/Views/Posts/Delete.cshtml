@@ -1,0 +1,45 @@
+﻿@model ForumSystem.App.ViewModels.Posts.DeletePostsViewModel
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Delete</h1>
+
+    <div class="card">
+        <div class="card-header">
+            <h4>@Model.Title</h4>
+        </div>
+        <div class="card-body">
+            <h4> Really you want to Remove @Model.Title</h4>
+            <br />
+            <a  asp-controller="Posts" asp-action="Details" asp-route-id="@Model.TopicId" class="btn btn-secondary"><img src="~/css/icons/icons8-cancel.svg" /> Close</a>
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                <img src="~/css/icons/icons8-trash.svg" /> Delete
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">@Model.Title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are You Sure?
+            </div>
+            <div class="modal-footer">
+                <form  asp-controller="Posts" asp-action="Delete" asp-route-id="@Model.Id" method="post">
+                    <input hidden asp-for="TopicId" />
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><img src="~/css/icons/icons8-unavailable.svg" /> No</button>
+                    <button type="submit" class="btn btn-danger"><img src="~/css/icons/icons8-checkmark.svg" /> Yes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

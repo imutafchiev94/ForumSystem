@@ -15,5 +15,9 @@ namespace ForumSystem.App.Services.Interface
 
         public Task CreatePost(CreatePostsBindingModel model);
 
+        public Task EditPost(EditPostBindingModel model);
+
+        public Task DeletePost(DeletePostsViewModel model);
+
     }
 }

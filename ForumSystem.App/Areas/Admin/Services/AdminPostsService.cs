@@ -43,28 +43,38 @@ namespace ForumSystem.App.Areas.Admin.Services
             await _dbContext.SaveChangesAsync();
         }
 
-        public Task DeletePost(DeletePostViewModel model)
+        public async Task DeletePost(DeletePostViewModel model)
         {
-            throw new NotImplementedException();
+            var post = await GetPost(model.Id);
+            post.IsDelete = true;
+
+            _dbContext.Posts.Update(post);
+            await _dbContext.SaveChangesAsync();
         }
 
-        public Task EditPost(EditPostBindingModel model)
+        public async Task EditPost(EditPostBindingModel model)
         {
-            throw new NotImplementedException();
+            var post = await GetPost(model.Id);
+
+            post.Title = model.Title;
+            post.Content = model.Content;
+
+            _dbContext.Posts.Update(post);
+            await _dbContext.SaveChangesAsync();
         }
 
 
         public async Task<List<Post>> GetAllPosts(int id)
         {
 
-            var posts = await _dbContext.Posts.Include(p => p.Author).Where(p => p.TopicId == id).ToListAsync();
+            var posts = await _dbContext.Posts.Include(p => p.Author).Where(p => p.TopicId == id).Where(p => p.IsDelete == false).ToListAsync();
 
             return posts;
         }
 
         public async Task<Post> GetPost(int id)
         {
-            var post = await _dbContext.Posts.Include(p => p.Author).Include(p => p.Comments).FirstOrDefaultAsync(p => p.Id == id);
+            var post = await _dbContext.Posts.Include(p => p.Author).Include(p => p.Comments).Where(p => p.IsDelete == false).FirstOrDefaultAsync(p => p.Id == id);
 
             if(post == null)
             {

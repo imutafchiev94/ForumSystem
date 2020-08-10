@@ -52,6 +52,7 @@ namespace ForumSystem.App
             services.AddScoped<IHomeServices, HomeService>();
             services.AddScoped<ITopicsServices, TopicsService>();
             services.AddScoped<IPostsServices, PostsServices>();
+            services.AddScoped<ICommentService, CommentsService>();
 
             services.Configure<IdentityOptions>(options =>
             {

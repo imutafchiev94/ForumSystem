@@ -35,21 +35,59 @@ namespace ForumSystem.App.Areas.Admin.Services
             await _dbContext.SaveChangesAsync();
         }
 
-        public Task DeleteComment(DeleteCommentViewModel model)
+        public async Task AddReply(AddReplyBindingModel model)
         {
-            throw new NotImplementedException();
+            var author = await _dbContext.Users.FirstOrDefaultAsync(a => a.UserName == model.Author);
+            var parent = await _dbContext.Comments.FirstOrDefaultAsync(c => c.Id == model.ParentCommentId);
+
+            var comment = new Comment
+            {
+                Content = model.Content,
+                AuthorId = author.Id,
+                DateOfPost = model.Posted,
+                PostId = parent.PostId,
+                ParentCommentId = model.ParentCommentId
+            };
+
+            await _dbContext.Comments.AddAsync(comment);
+            await _dbContext.SaveChangesAsync();
         }
 
-        public Task EditComment(EditCommentBindingModel model)
+        public async Task DeleteComment(int id)
+        {
+            var comment = await _dbContext.Comments.FirstOrDefaultAsync(c => c.Id == id);
+            comment.IsDelete = true;
+
+            _dbContext.Comments.Update(comment);
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public Task<Comment> EditComment(string content, int id)
         {
             throw new NotImplementedException();
         }
 
         public List<Comment> GetAllComments(int id)
         {
-            var comments =  _dbContext.Comments.Where(c => c.PostId == id).Include(c => c.Author).OrderByDescending(c => c.DateOfPost).ToList();
+            var comments =  _dbContext.Comments.Where(c => c.PostId == id).Where(c => c.IsDelete == false).Include(c => c.Author).OrderByDescending(c => c.DateOfPost).ToList();
 
             return comments;
         }
+
+        public async Task<List<Comment>> GetAllReplies(int id)
+        {
+            var comments = await _dbContext.Comments.Include(c => c.Author).Include(c => c.Post).Where(c => c.IsDelete == false)
+                .Where(c => c.ParentCommentId == id).ToListAsync();
+
+            return comments;
+        }
+
+        public async Task<Comment> GetComment(int id)
+        {
+            var comment = await _dbContext.Comments.Include(c => c.Author).Include(c => c.Post).FirstOrDefaultAsync(c => c.Id == id);
+
+            return comment;
+        }
+
     }
 }

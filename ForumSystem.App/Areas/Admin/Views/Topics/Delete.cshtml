@@ -13,9 +13,9 @@
         <div class="card-body">
             <h4> Really you want to Remove @Model.Title</h4>
             <br />
-            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="btn btn-secondary">Close</a>
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="btn btn-secondary"><img src="~/css/icons/icons8-cancel.svg"/> Close</a>
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
-                <i class="fa fa-trash"> Delete</i>
+                <img src="~/css/icons/icons8-trash.svg"/> Delete
             </button>
         </div>
     </div>
@@ -35,8 +35,8 @@
             </div>
             <div class="modal-footer">
                 <form asp-area="Admin" asp-controller="Topics" asp-action="Delete" asp-route-id="@Model.Id" method="post">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                    <button type="submit" class="btn btn-danger">Yes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><img src="~/css/icons/icons8-unavailable.svg" /> No</button>
+                    <button type="submit" class="btn btn-danger"><img src="~/css/icons/icons8-checkmark.svg" /> Yes</button>
                 </form>
             </div>
         </div>

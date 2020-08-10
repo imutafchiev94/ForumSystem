@@ -17,8 +17,8 @@
             </div>
             <div class="card-footer row">
                 <div class="text-right col-md-12">
-                    <a asp-area="Admin" asp-controller="Posts" asp-action="Edit" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a>
-                    <a asp-area="Admin" asp-controller="Posts" asp-action="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a>
+                    <a asp-area="Admin" asp-controller="Posts" asp-action="Edit" class="btn btn-primary"><img src="~/css/icons/icons8-edit.svg" /> Edit</a>
+                    <a asp-area="Admin" asp-controller="Posts" asp-action="Delete" class="btn btn-danger"><img src="~/css/icons/icons8-trash.svg" /> Delete</a>
                 </div>
                 <hr />
                 <div class="text-center col-md-12">
@@ -37,11 +37,11 @@
                     <input hidden id="PostId" name="PostId" value="@Model.Id" />
                     <div class="text-right">
                         @Html.AntiForgeryToken()
-                        <button name="" type="submit" class="btn btn-success" id="btnsubmit">Add Comment</button>
+                        <button name="" type="submit" class="btn btn-success" id="btnsubmit"><img src="~/css/icons/icons8-chat.svg" /> Add Comment</button>
                     </div>
                 </form>
             </div>
-            <br />
+            <hr />
             <a hidden asp-area="Admin" asp-controller="Posts" asp-action="GetAll" asp-route-id="@Model.Id" id="refreshComments"
                data-ajax="true" data-ajax-method="get" data-ajax-mode="replace" data-ajax-update="#AllComments"></a>
 
@@ -50,9 +50,8 @@
             </div>
         </div>
         <br />
-        
     </div>
-
+    <br />
 @section Scripts {
     <script>
         function myComplete(data) {

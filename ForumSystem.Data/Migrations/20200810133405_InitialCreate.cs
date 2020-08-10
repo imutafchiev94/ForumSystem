@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ForumSystem.Data.Migrations
 {
-    public partial class InitailCreate : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -162,6 +162,7 @@ namespace ForumSystem.Data.Migrations
                     Title = table.Column<string>(nullable: false),
                     Content = table.Column<string>(nullable: false),
                     AuthorId = table.Column<string>(nullable: true),
+                    IsDelete = table.Column<bool>(nullable: false),
                     CreatedOn = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
@@ -184,6 +185,7 @@ namespace ForumSystem.Data.Migrations
                     Title = table.Column<string>(nullable: false),
                     Content = table.Column<string>(nullable: false),
                     AuhtorId = table.Column<string>(nullable: true),
+                    IsDelete = table.Column<bool>(nullable: false),
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     TopicId = table.Column<int>(nullable: false)
                 },
@@ -213,6 +215,7 @@ namespace ForumSystem.Data.Migrations
                     Content = table.Column<string>(nullable: false),
                     DateOfPost = table.Column<DateTime>(nullable: false),
                     AuthorId = table.Column<string>(nullable: false),
+                    IsDelete = table.Column<bool>(nullable: false),
                     PostId = table.Column<int>(nullable: false),
                     CommentId = table.Column<int>(nullable: true)
                 },

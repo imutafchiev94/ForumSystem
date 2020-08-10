@@ -1,0 +1,32 @@
+﻿@model ForumSystem.App.Areas.Admin.ViewModels.Posts.EditPostBindingModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Edit Post</h1>
+    <br />
+
+    <form asp-area="Admin" asp-controller="Posts" asp-action="Edit" asp-route-id="@Model.Id" method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Title"></label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Content"></label>
+            <textarea asp-for="Content" cols="40" rows="3" class="form-control" ></textarea>
+            <span asp-validation-for="Content"></span>
+
+            <input hidden asp-for="TopicId" />
+        </div>
+
+
+        <button type="submit" class="btn btn-success"><img src="~/css/icons/icons8-edit.svg" alt="Edit Post" /> Edit</button>
+        <button type="reset" class="btn btn-danger"><img src="~/css/icons/icons8-reset.svg" alt="Reset" /> Reset</button>
+        <a asp-area="Admin" asp-controller="Topics" asp-action="Details" asp-route-id="@Model.TopicId" class="btn btn-secondary">
+            <img src="~/css/icons/icons8-cancel.svg" /> Cancel
+        </a>
+    </form>
+</div>

@@ -19,8 +19,10 @@
     <input hidden asp-for="Author" value="@Model.Author" />
     <input hidden asp-for="TopicId" value="@Model.TopicId" />
 
-    <button type="submit" class="btn btn-success m-2" id="btnSubmit">Create Post</button>
-    <a asp-controller="Home" asp-action="Index" class="btn btn-secondary m-2">Cancel</a>
+    <button type="submit" class="btn btn-success m-2" id="btnSubmit">
+    <img src="~/css/icons/icons8-create-post.svg" /> Create Post</button>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-secondary m-2">
+    <img src="~/css/icons/icons8-cancel.svg" /> Cancel</a>
 
 </form>
 

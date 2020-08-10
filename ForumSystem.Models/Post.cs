@@ -26,7 +26,9 @@ namespace ForumSystem.Models
         public string AuhtorId { get; set; }
 
         public User Author { get; set; }
-        
+
+        public bool IsDelete { get; set; }
+
         [Required]
         [DataType(DataType.DateTime)]
         public DateTime CreatedOn { get; set; }

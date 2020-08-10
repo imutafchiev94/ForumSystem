@@ -21,15 +21,18 @@
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">
+                                <img src="~/css/icons/icons8-home-page.svg" alt="Home Page" /> Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">
+                                <img src="~/css/icons/icons8-privacy-policy.svg" alt="Privacy Page"/> Privacy</a>
                         </li>
                         @if (User.IsInRole("Admin"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a>
+                                <a class="nav-link text-light" asp-area="Admin" asp-controller="Home" asp-action="Index">
+                                    <img src="~/css/icons/icons8-admin-settings-male (1).svg" alt="Admin panel" /> Admin</a>
                             </li>
                         }
                     </ul>

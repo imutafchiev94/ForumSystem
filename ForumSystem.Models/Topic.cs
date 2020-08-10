@@ -24,6 +24,8 @@ namespace ForumSystem.Models
 
         public string AuthorId { get; set; }
 
+        public bool IsDelete { get; set; }
+
         public User Author { get; set; }
         
         [Required]

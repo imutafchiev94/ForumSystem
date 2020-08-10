@@ -6,6 +6,7 @@ using ForumSystem.App.Areas.Admin.Services.Interfaces;
 using ForumSystem.App.Areas.Admin.ViewModels.Comments;
 using ForumSystem.App.Areas.Admin.ViewModels.Posts;
 using ForumSystem.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
@@ -105,5 +106,59 @@ namespace ForumSystem.App.Areas.Admin.Controllers
 
             return PartialView("~/Areas/Admin/Views/Shared/_Comments.cshtml", model);
         }
+
+        [HttpGet]
+        
+        public async Task<IActionResult> Edit(int id)
+        {
+            var post = await _service.GetPost(id);
+
+            if(User.Identity.Name != post.Author.UserName)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            var model = new EditPostBindingModel
+            {
+                Id = id,
+                Title = post.Title,
+                Content = post.Content
+            };
+
+            return this.View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(EditPostBindingModel model)
+        {
+            await _service.EditPost(model);
+
+            return RedirectToAction("Details", new { id = model.Id });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var post = await _service.GetPost(id);
+
+
+
+            var model = new DeletePostViewModel
+            {
+                Id = post.Id,
+                Title = post.Title
+            };
+
+            return this.View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(DeletePostViewModel model)
+        {
+            await _service.DeletePost(model);
+
+            return RedirectToAction("Details", "Topics", new { id = model.TopicId});
+        }
+
     }
 }

@@ -51,7 +51,8 @@ namespace ForumSystem.App.Services
         {
 
 
-            var posts = await _dbContext.Posts.Include(p => p.Author).Where(p => p.TopicId == id).ToListAsync();
+            var posts = await _dbContext.Posts.Include(p => p.Author).Where(p => p.TopicId == id)
+                .Where(p => p.IsDelete == false).ToListAsync();
 
            
             return posts;
@@ -63,5 +64,27 @@ namespace ForumSystem.App.Services
 
             return post;
         }
+
+        public async Task EditPost(EditPostBindingModel model)
+        {
+            var post = await GetPost(model.Id);
+
+            post.Title = model.Title;
+            post.Content = model.Content;
+
+            _dbContext.Posts.Update(post);
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task DeletePost(DeletePostsViewModel model)
+        {
+            var post = await GetPost(model.Id);
+            post.IsDelete = true;
+
+            _dbContext.Posts.Update(post);
+            await _dbContext.SaveChangesAsync();
+        }
+
+        
     }
 }

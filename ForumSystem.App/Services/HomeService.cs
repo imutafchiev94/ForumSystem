@@ -20,7 +20,7 @@ namespace ForumSystem.App.Services
 
         public async Task<List<Topic>> GetAllTopics()
         {
-            var topics = await _dbContext.Topics.Include(t => t.Author).ToListAsync();
+            var topics = await _dbContext.Topics.Include(t => t.Author).Where(t => t.IsDelete == false).ToListAsync();
 
             return topics;
         }

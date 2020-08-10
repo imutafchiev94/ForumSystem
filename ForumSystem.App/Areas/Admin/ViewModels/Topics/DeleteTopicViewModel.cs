@@ -10,5 +10,6 @@ namespace ForumSystem.App.Areas.Admin.ViewModels.Topics
         public int Id { get; set; }
 
         public string Title { get; set; }
+
     }
 }
