@@ -22,17 +22,20 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">
-                                <img src="~/css/icons/icons8-home-page.svg" alt="Home Page" /> Home</a>
+                                <img src="~/css/icons/icons8-home-page.svg" alt="Home Page" /> Home
+                            </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">
-                                <img src="~/css/icons/icons8-privacy-policy.svg" alt="Privacy Page"/> Privacy</a>
+                                <img src="~/css/icons/icons8-privacy-policy.svg" alt="Privacy Page" /> Privacy
+                            </a>
                         </li>
                         @if (User.IsInRole("Admin"))
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-light" asp-area="Admin" asp-controller="Home" asp-action="Index">
-                                    <img src="~/css/icons/icons8-admin-settings-male (1).svg" alt="Admin panel" /> Admin</a>
+                                    <img src="~/css/icons/icons8-admin-settings-male (1).svg" alt="Admin panel" /> Admin
+                                </a>
                             </li>
                         }
                     </ul>
@@ -53,7 +56,7 @@
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

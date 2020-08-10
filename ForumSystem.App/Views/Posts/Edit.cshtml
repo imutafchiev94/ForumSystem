@@ -18,7 +18,7 @@
                 <textarea asp-for="Content" cols="40" rows="3" class="form-control"></textarea>
                 <span asp-validation-for="Content"></span>
 
-                <input hidden asp-for="TopicId" />
+                <input hidden asp-for="TopicId" value="@Model.TopicId"/>
             </div>
 
 
