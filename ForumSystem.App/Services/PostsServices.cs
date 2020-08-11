@@ -21,7 +21,7 @@ namespace ForumSystem.App.Services
             _dbContext = dbContext;
         }
 
-        public async Task CreatePost(CreatePostsBindingModel model)
+        public async Task CreatePostAsync(CreatePostsBindingModel model)
         {
             var author = (User)await _dbContext.Users.FirstOrDefaultAsync(a => a.UserName == model.Author);
 
@@ -47,27 +47,38 @@ namespace ForumSystem.App.Services
 
         }
 
-        public async Task<List<Post>> GetAllPosts(int id)
+        public  List<Post> GetAllPosts(int id)
         {
 
 
-            var posts = await _dbContext.Posts.Include(p => p.Author).Where(p => p.TopicId == id)
-                .Where(p => p.IsDelete == false).ToListAsync();
+            var posts = _dbContext.Posts.Include(p => p.Author).Include(p => p.Comments).Where(p => p.TopicId == id)
+                .Where(p => p.IsDelete == false).OrderByDescending(p => p.CreatedOn).ToList();
 
            
             return posts;
         }
 
-        public async Task<Post> GetPost(int id)
+        public async Task<Post> GetPostAsync(int id)
         {
-            var post = await _dbContext.Posts.Include(p => p.Author).FirstOrDefaultAsync(p => p.Id == id);
+            var post = await _dbContext.Posts.Include(p => p.Author).Include(p => p.Comments).Include(p => p.Topic)
+                .FirstOrDefaultAsync(p => p.Id == id);
+
+            if (post == null)
+            {
+                throw new NullReferenceException($"Post with {id} doesn't exist");
+            }
 
             return post;
         }
 
-        public async Task EditPost(EditPostBindingModel model)
+        public async Task EditPostAsync(EditPostBindingModel model)
         {
-            var post = await GetPost(model.Id);
+            var post = await GetPostAsync(model.Id);
+
+            if (post == null)
+            {
+                throw new NullReferenceException($"Post with {model.Id} doesn't exist");
+            }
 
             post.Title = model.Title;
             post.Content = model.Content;
@@ -76,9 +87,15 @@ namespace ForumSystem.App.Services
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task DeletePost(DeletePostsViewModel model)
+        public async Task DeletePostAsync(DeletePostsViewModel model)
         {
-            var post = await GetPost(model.Id);
+            var post = await GetPostAsync(model.Id);
+
+            if (post == null)
+            {
+                throw new NullReferenceException($"Post with {model.Id} doesn't exist");
+            }
+
             post.IsDelete = true;
 
             _dbContext.Posts.Update(post);

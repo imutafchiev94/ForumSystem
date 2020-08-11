@@ -10,29 +10,29 @@
             {
                 <li class="nav-item">
                     <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
-                    <img src="~/css/icons/icons8-admin-settings-male (1).svg"/> @User.Identity.Name</a>
+                    <img src="~/css/icons/icons8-admin-settings-male (1).svg" alt="Admin"/> @User.Identity.Name</a>
                 </li>
             }
             else
             {
                 <li class="nav-item">
                     <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
-                    <img src="~/css/icons/icons8-user-male.svg" /> @User.Identity.Name</a>
+                    <img src="~/css/icons/icons8-user-male.svg" alt="user"/> @User.Identity.Name</a>
                 </li>
             }
             <li class="nav-item">
                 <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                    <button type="submit" class="nav-link btn btn-link text-light"><img src="~/css/icons/icons8-logout-rounded-down.svg" /> Logout</button>
+                    <button type="submit" class="nav-link btn btn-link text-light"><img src="~/css/icons/icons8-logout-rounded-down.svg" alt="LogOut"/> Logout</button>
                 </form>
             </li>
         }
         else
         {
             <li class="nav-item">
-                <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Register"><img src="~/css/icons/icons8-registration.svg" />Register</a>
+                <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Register"><img src="~/css/icons/icons8-registration.svg" alt="Register"/>Register</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Login"><img src="~/css/icons/icons8-login.svg" \ /> Login</a>
+                <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Login"><img src="~/css/icons/icons8-login.svg" alt="Login" /> Login</a>
             </li>
         }
     </ul>

@@ -9,15 +9,15 @@ namespace ForumSystem.App.Services.Interface
 {
     public interface IPostsServices
     {
-        public Task<List<Post>> GetAllPosts(int id);
+        public List<Post> GetAllPosts(int id);
 
-        public Task<Post> GetPost(int id);
+        public Task<Post> GetPostAsync(int id);
 
-        public Task CreatePost(CreatePostsBindingModel model);
+        public Task CreatePostAsync(CreatePostsBindingModel model);
 
-        public Task EditPost(EditPostBindingModel model);
+        public Task EditPostAsync(EditPostBindingModel model);
 
-        public Task DeletePost(DeletePostsViewModel model);
+        public Task DeletePostAsync(DeletePostsViewModel model);
 
     }
 }

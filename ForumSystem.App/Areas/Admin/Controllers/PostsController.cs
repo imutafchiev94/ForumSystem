@@ -17,6 +17,7 @@ namespace ForumSystem.App.Areas.Admin.Controllers
 
     [Route("[Area]/[Controller]/[Action]")]
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class PostsController : Controller
     {
         private readonly IAdminPostsService _service;
@@ -45,21 +46,28 @@ namespace ForumSystem.App.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreatePostBindingModel model)
         {
-            model.Author = User.Identity.Name;
+            if(ModelState.IsValid)
+            {
+                model.Author = User.Identity.Name;
 
-            var id = int.Parse(HttpContext.Request.Query["id"].ToString().Split().ToArray()[0]);
+                var id = int.Parse(HttpContext.Request.Query["id"].ToString().Split().ToArray()[0]);
 
-            model.TopicId = id;
+                model.TopicId = id;
 
-            await _service.CreatePost(model);
+                await _service.CreatePostAsync(model);
 
-            return Redirect($"~/Admin/Topics/Details/?id={model.TopicId}");
+                return Redirect($"~/Admin/Topics/Details/?id={model.TopicId}");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            var post = await _service.GetPost(id);
+            var post = await _service.GetPostAsync(id);
 
             var model = new PostDetailsViewModel
             {
@@ -69,6 +77,7 @@ namespace ForumSystem.App.Areas.Admin.Controllers
                 Content = post.Content,
                 CreatedOn = post.CreatedOn,
                 Comments =  _adminCommentService.GetAllComments(id),
+                TopicId = post.TopicId,
                 viewModel = new AllCommentsViewModel { Comments = _adminCommentService.GetAllComments(id)}
             };
 
@@ -88,7 +97,7 @@ namespace ForumSystem.App.Areas.Admin.Controllers
                 PostId = PostId
             };
 
-            await _adminCommentService.AddComment(model);
+            await _adminCommentService.AddCommentAsync(model);
 
             return RedirectToAction("GetAll", new { PostId = PostId });
         }
@@ -111,7 +120,7 @@ namespace ForumSystem.App.Areas.Admin.Controllers
         
         public async Task<IActionResult> Edit(int id)
         {
-            var post = await _service.GetPost(id);
+            var post = await _service.GetPostAsync(id);
 
             if(User.Identity.Name != post.Author.UserName)
             {
@@ -122,7 +131,8 @@ namespace ForumSystem.App.Areas.Admin.Controllers
             {
                 Id = id,
                 Title = post.Title,
-                Content = post.Content
+                Content = post.Content,
+                TopicId = post.TopicId
             };
 
             return this.View(model);
@@ -131,15 +141,19 @@ namespace ForumSystem.App.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(EditPostBindingModel model)
         {
-            await _service.EditPost(model);
+            if(ModelState.IsValid)
+            {
+                await _service.EditPostAsync(model);
 
-            return RedirectToAction("Details", new { id = model.Id });
+                return RedirectToAction("Details", new { id = model.Id });
+            }
+            return View();
         }
 
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
-            var post = await _service.GetPost(id);
+            var post = await _service.GetPostAsync(id);
 
 
 
@@ -155,7 +169,7 @@ namespace ForumSystem.App.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(DeletePostViewModel model)
         {
-            await _service.DeletePost(model);
+            await _service.DeletePostAsync(model);
 
             return RedirectToAction("Details", "Topics", new { id = model.TopicId});
         }

@@ -1,0 +1,28 @@
+﻿@model ForumSystem.App.ViewModels.Comments.AllCommentsViewModel
+@using ForumSystem.App.Common
+
+@foreach (var comment in Model.Comments)
+{
+    <br />
+    <div class="card w-100 pl-5">
+        <div class="card-body">
+            <div class="row">
+                <h5 class="text-left col-6">@TimeFormat.Posted(comment.DateOfPost)</h5>
+                <h5 class="text-right col-6">Posted by @comment.Author.UserName</h5>
+            </div>
+            <p id="editText" class="card-text">@comment.Content</p>
+        </div>
+        <div class="card-footer">
+            @if (User.Identity.Name == comment.Author.UserName)
+            {
+                <form asp-controller="Comments" asp-action="DeleteReply" asp-route-id="@comment.Id" method="post">
+                    <button type="submit" class="btn btn-danger">
+                        <img src="~/css/icons/icons8-trash.svg" alt="Delete" /> Delete
+                    </button>
+                </form>
+            }
+        </div>
+    </div>
+
+    <br />
+}

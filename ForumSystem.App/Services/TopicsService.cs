@@ -19,9 +19,14 @@ namespace ForumSystem.App.Services
         }
 
 
-        public async Task<Topic> GetTopic(int id)
+        public async Task<Topic> GetTopicAsync(int id)
         {
             var topic = await _dbContext.Topics.Include(t => t.Posts).Include(t => t.Author).FirstOrDefaultAsync(t => t.Id == id);
+
+            if (topic == null)
+            {
+                throw new NullReferenceException($"Topic with {id} doesn't exist");
+            }
 
             return topic;
         }

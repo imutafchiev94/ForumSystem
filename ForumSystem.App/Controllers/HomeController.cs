@@ -24,7 +24,7 @@ namespace ForumSystem.App.Controllers
         {
             var model = new IndexViewModel
             {
-                Topics = await _service.GetAllTopics()
+                Topics = await _service.GetAllTopicsAsync()
             };
 
             return View(model);

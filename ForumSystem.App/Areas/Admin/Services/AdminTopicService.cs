@@ -58,6 +58,11 @@ namespace ForumSystem.App.Areas.Admin.Services
         {
             var topic = await GetTopicAsync(id);
 
+            if (topic == null)
+            {
+                throw new NullReferenceException($"Topic with {id} doesn't exist");
+            }
+
             topic.Title = model.Title;
             topic.Content = model.Content;
 
@@ -67,7 +72,8 @@ namespace ForumSystem.App.Areas.Admin.Services
 
         public async Task<List<Topic>> GetAllTopicsAsync()
         {
-            var topics = _dbContext.Topics.Include(t => t.Author).Where(t => t.IsDelete == false).ToList();
+            var topics = await _dbContext.Topics.Include(t => t.Author).Include(t => t.Posts).Where(t => t.IsDelete == false)
+                .OrderByDescending(t => t.CreatedOn).ToListAsync();
 
             return topics;
         }
@@ -75,14 +81,13 @@ namespace ForumSystem.App.Areas.Admin.Services
         public async Task<Topic> GetTopicAsync(int id)
         {
             var topic = await _dbContext.Topics.Include(t => t.Author).Include(t => t.Posts).Where(t => t.IsDelete == false).FirstOrDefaultAsync(t => t.Id == id);
+            
             if(topic == null)
             {
                 throw new NullReferenceException($"Topic with {id} doesn't exist");
             }
-            else
-            {
-                return topic;
-            }
+
+            return topic;
         }
     }
 }

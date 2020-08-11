@@ -215,6 +215,7 @@ namespace ForumSystem.Data.Migrations
                     Content = table.Column<string>(nullable: false),
                     DateOfPost = table.Column<DateTime>(nullable: false),
                     AuthorId = table.Column<string>(nullable: false),
+                    ParentCommentId = table.Column<int>(nullable: false),
                     IsDelete = table.Column<bool>(nullable: false),
                     PostId = table.Column<int>(nullable: false),
                     CommentId = table.Column<int>(nullable: true)

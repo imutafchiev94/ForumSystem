@@ -1,4 +1,5 @@
 ﻿@model ForumSystem.App.Areas.Admin.ViewModels.Comments.AllCommentsViewModel
+@inject ForumSystem.App.Areas.Admin.Services.Interfaces.IAdminCommentsServices _service
 @using ForumSystem.App.Common
 
 @foreach (var comment in Model.Comments)
@@ -12,10 +13,17 @@
             </div>
             <p id="editText" class="card-text">@comment.Content</p>
         </div>
-        <div class="card-footer">
-            <a asp-area="Admin" asp-controller="Comments" asp-action="Details" asp-route-id="@comment.Id">
-                <img src="~/css/icons/icons8-details.svg" alt="Comment Details" /> Details
-            </a>
+        <div class="card-footer row">
+            <div class="col-md-6 text-left">
+                <a asp-area="Admin" asp-controller="Comments" asp-action="Details" asp-route-id="@comment.Id">
+                    <img src="~/css/icons/icons8-chat.svg" alt="Replies" /> @_service.GetAllReplies(comment.Id).Count Replies
+                </a>
+            </div>
+            <div class="col-md-6 text-right">
+                <a asp-area="Admin" asp-controller="Comments" asp-action="Details" asp-route-id="@comment.Id" class="btn btn-primary">
+                    <img src="~/css/icons/icons8-details.svg" alt="Comment Details" /> Details
+                </a>
+            </div>
         </div>
     </div>
 

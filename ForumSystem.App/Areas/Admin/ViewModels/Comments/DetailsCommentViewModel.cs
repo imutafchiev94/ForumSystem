@@ -17,6 +17,8 @@ namespace ForumSystem.App.Areas.Admin.ViewModels.Comments
 
         public string Author { get; set; }
 
+        public int PostId { get; set; }
+
         public int ParentCommentId { get; set; }
 
         public List<Comment> Replies { get; set; }

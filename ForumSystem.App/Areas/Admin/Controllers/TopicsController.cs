@@ -6,12 +6,13 @@ using ForumSystem.App.Areas.Admin.Services.Interfaces;
 using ForumSystem.App.Areas.Admin.ViewModels.Topics;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace ForumSystem.App.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Route("[Area]/[Controller]/[Action]")]
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class TopicsController : Controller
     {
 
@@ -35,9 +36,18 @@ namespace ForumSystem.App.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateTopicBindingModel model)
         {
-            await _service.CreateTopicAsync(model);
+            if (ModelState.IsValid)
+            {
+                await _service.CreateTopicAsync(model);
 
-            return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Home");
+            }
+
+            else
+            {
+                return View();
+            }    
+            
         }
 
         [HttpGet]
@@ -52,7 +62,7 @@ namespace ForumSystem.App.Areas.Admin.Controllers
                 Content = topic.Content,
                 AuthorUserName = topic.Author.UserName,
                 CreatedOn = topic.CreatedOn,
-                Posts = await _adminPostsService.GetAllPosts(id)
+                Posts = await _adminPostsService.GetAllPostsAsync(id)
             };
 
             return View(viewModel);
@@ -77,12 +87,18 @@ namespace ForumSystem.App.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(EditTopicBindingModel model)
         {
-            var id = int.Parse(HttpContext.Request.Query["id"].ToString().Split().ToArray()[0]);
+            if (ModelState.IsValid)
+            {
+                var id = int.Parse(HttpContext.Request.Query["id"].ToString().Split().ToArray()[0]);
 
-            await _service.EditTopicAsync(id, model);
+                await _service.EditTopicAsync(id, model);
 
-            return RedirectToAction("Index", "Home");
-
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [HttpGet]

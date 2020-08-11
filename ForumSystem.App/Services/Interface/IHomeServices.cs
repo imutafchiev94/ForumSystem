@@ -9,7 +9,7 @@ namespace ForumSystem.App.Services.Interface
     public interface IHomeServices
     {
 
-        public Task<List<Topic>> GetAllTopics();
+        public Task<List<Topic>> GetAllTopicsAsync();
 
     }
 }

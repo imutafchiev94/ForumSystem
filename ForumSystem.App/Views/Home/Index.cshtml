@@ -24,8 +24,9 @@
                         <p class="card-text">@topic.Content<p>
                     </div>
                     <div class="card-footer text-muted row">
-                        <a asp-controller="Topics" asp-action="Details" asp-route-id="@topic.Id" class="btn btn-primary text-center col-md-2">
-                        <img src="~/css/icons/icons8-details.svg"/> Details</a>
+                        <a asp-controller="Topics" asp-action="Details" asp-route-id="@topic.Id" class="text-center col-md-2">
+                            <img src="~/css/icons/icons8-news.svg" alt="Details" /> @topic.Posts.Count() Posts
+                        </a>
                         <span class="text-right col-md-10">Author - @topic.Author.UserName</span>
 
                     </div>
@@ -54,14 +55,15 @@ else
                     <p class="card-text">@topic.Content<p>
                 </div>
                 <div class="card-footer text-muted row">
-                    <a asp-controller="Topics" asp-action="Details" asp-route-id="@topic.Id" class="btn btn-primary text-center col-md-2">
-                        <img src="~/css/icons/icons8-details.svg" /> Details
+                    <a asp-controller="Topics" asp-action="Details" asp-route-id="@topic.Id" class="text-center col-md-2">
+                        <img src="~/css/icons/icons8-news.svg" alt="Details"/> @topic.Posts.Count() Posts
                     </a>
                     <span class="text-right col-md-10">Author - @topic.Author.UserName</span>
 
                 </div>
             </li>
         }
+    </ul>
 </div>
 }
 

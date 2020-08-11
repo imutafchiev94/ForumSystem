@@ -19,14 +19,14 @@
             <textarea asp-for="Content" cols="40" rows="3" class="form-control" ></textarea>
             <span asp-validation-for="Content"></span>
 
-            <input hidden asp-for="TopicId" />
+            <input hidden asp-for="TopicId" value="@Model.TopicId"/>
         </div>
 
 
         <button type="submit" class="btn btn-success"><img src="~/css/icons/icons8-edit.svg" alt="Edit Post" /> Edit</button>
         <button type="reset" class="btn btn-danger"><img src="~/css/icons/icons8-reset.svg" alt="Reset" /> Reset</button>
         <a asp-area="Admin" asp-controller="Topics" asp-action="Details" asp-route-id="@Model.TopicId" class="btn btn-secondary">
-            <img src="~/css/icons/icons8-cancel.svg" /> Cancel
+            <img src="~/css/icons/icons8-cancel.svg" alt="Close"/> Cancel
         </a>
     </form>
 </div>

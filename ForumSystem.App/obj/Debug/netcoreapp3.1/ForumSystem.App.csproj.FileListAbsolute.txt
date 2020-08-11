@@ -442,3 +442,5 @@ D:\ASP.Net LeetSoft\ForumSystem\ForumSystem\ForumSystem.App\obj\Debug\netcoreapp
 D:\ASP.Net LeetSoft\ForumSystem\ForumSystem\ForumSystem.App\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Comments.cshtml.g.cs
 D:\ASP.Net LeetSoft\ForumSystem\ForumSystem\ForumSystem.App\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Comments\Details.cshtml.g.cs
 D:\ASP.Net LeetSoft\ForumSystem\ForumSystem\ForumSystem.App\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Shared\_Replies.cshtml.g.cs
+D:\ASP.Net LeetSoft\ForumSystem\ForumSystem\ForumSystem.App\obj\Debug\netcoreapp3.1\Razor\Views\Comments\Details.cshtml.g.cs
+D:\ASP.Net LeetSoft\ForumSystem\ForumSystem\ForumSystem.App\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Replies.cshtml.g.cs

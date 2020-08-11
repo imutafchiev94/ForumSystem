@@ -11,9 +11,17 @@ namespace ForumSystem.App.Services.Interface
     {
         public List<Comment> GetAllComments(int id);
 
-        public Task AddComment(AddCommentBindingModel model);
+        public Task AddCommentAsync(AddCommentBindingModel model);
 
-        public Task DeleteComment(DeleteCommentViewModel model);
+        public Task<Comment> EditCommentAsync(string content, int id);
+
+        public Task DeleteCommentAsync(int id);
+
+        public Task<Comment> GetCommentAsync(int id);
+
+        public Task AddReplyAsync(AddReplyBindingModel model);
+
+        public List<Comment> GetAllReplies(int id);
 
     }
 }

@@ -19,6 +19,8 @@ namespace ForumSystem.App.Areas.Admin.ViewModels.Posts
 
         public string Author { get; set; }
 
+        public int TopicId { get; set; }
+
         public List<Comment> Comments { get; set; }
 
         public AllCommentsViewModel viewModel { get; set; }

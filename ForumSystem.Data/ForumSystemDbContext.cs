@@ -49,6 +49,7 @@ namespace ForumSystem.Data
                 .WithMany(a => a.Topics)
                 .HasForeignKey(t => t.AuthorId);
 
+
             base.OnModelCreating(builder);
         }
     }

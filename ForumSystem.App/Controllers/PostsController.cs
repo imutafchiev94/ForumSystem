@@ -38,17 +38,24 @@ namespace ForumSystem.App.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreatePostsBindingModel model)
         {
-            model.Author = User.Identity.Name;
+            if(ModelState.IsValid)
+            {
+                model.Author = User.Identity.Name;
 
-            await _services.CreatePost(model);
+                await _services.CreatePostAsync(model);
 
-            return Redirect($"/Topics/Details/{model.TopicId}");
+                return Redirect($"/Topics/Details/{model.TopicId}");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            var post = await _services.GetPost(id);
+            var post = await _services.GetPostAsync(id);
 
             var model = new PostsDetailsViewModel
             {
@@ -58,6 +65,7 @@ namespace ForumSystem.App.Controllers
                 Content = post.Content,
                 CreatedOn = post.CreatedOn,
                 Comments = _commentService.GetAllComments(id),
+                TopicId = post.TopicId,
                 viewModel = new AllCommentsViewModel { Comments = _commentService.GetAllComments(id) }
             };
 
@@ -77,7 +85,7 @@ namespace ForumSystem.App.Controllers
                 PostId = PostId
             };
 
-            await _commentService.AddComment(model);
+            await _commentService.AddCommentAsync(model);
 
             return RedirectToAction("GetAll", new { PostId = PostId });
         }
@@ -100,7 +108,7 @@ namespace ForumSystem.App.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
-            var post = await _services.GetPost(id);
+            var post = await _services.GetPostAsync(id);
 
             if (User.Identity.Name != post.Author.UserName)
             {
@@ -111,7 +119,8 @@ namespace ForumSystem.App.Controllers
             {
                 Id = id,
                 Title = post.Title,
-                Content = post.Content
+                Content = post.Content,
+                TopicId = post.TopicId
             };
 
             return this.View(model);
@@ -120,15 +129,23 @@ namespace ForumSystem.App.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(EditPostBindingModel model)
         {
-            await _services.EditPost(model);
+            if(ModelState.IsValid)
+            {
+                await _services.EditPostAsync(model);
 
-            return RedirectToAction("Details", new { id = model.Id });
+                return RedirectToAction("Details", new { id = model.Id });
+
+            }    
+            else
+            {
+                return View();
+            }
         }
 
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
-            var post = await _services.GetPost(id);
+            var post = await _services.GetPostAsync(id);
 
 
 
@@ -144,7 +161,7 @@ namespace ForumSystem.App.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(DeletePostsViewModel model)
         {
-            await _services.DeletePost(model);
+            await _services.DeletePostAsync(model);
 
             return RedirectToAction("Details", "Topics", new { id = model.TopicId });
         }

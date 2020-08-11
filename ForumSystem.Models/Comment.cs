@@ -30,8 +30,9 @@ namespace ForumSystem.Models
         public User Author { get; set; }
 
         public IEnumerable<Comment> Replies { get; set; }
-
+        
         public int ParentCommentId { get; set; }
+
 
         public bool IsDelete { get; set; }
 

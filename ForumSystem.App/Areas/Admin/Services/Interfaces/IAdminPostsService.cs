@@ -10,15 +10,15 @@ namespace ForumSystem.App.Areas.Admin.Services.Interfaces
     public interface IAdminPostsService
     {
 
-       public Task<List<Post>> GetAllPosts(int id);
+       public Task<List<Post>> GetAllPostsAsync(int id);
 
-        public Task<Post> GetPost(int id);
+        public Task<Post> GetPostAsync(int id);
 
-        public Task CreatePost(CreatePostBindingModel model);
+        public Task CreatePostAsync(CreatePostBindingModel model);
 
-        public Task EditPost(EditPostBindingModel model);
+        public Task EditPostAsync(EditPostBindingModel model);
 
-        public Task DeletePost(DeletePostViewModel model);
+        public Task DeletePostAsync(DeletePostViewModel model);
 
     }
 }

@@ -11,7 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ForumSystem.App.Areas.Admin.Controllers
 {
-    [Area(GlobalConstants.AdminstrationRoleName)]
+    [Route("[Area]/[Controller]/[Action]")]
+    [Area("Admin")]
     [Authorize(Roles = "Admin")]
     public class CommentsController : Controller
     {
@@ -25,7 +26,7 @@ namespace ForumSystem.App.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            var comment = await _services.GetComment(id);
+            var comment = await _services.GetCommentAsync(id);
 
             var model = new DetailsCommentViewModel
             {
@@ -34,15 +35,20 @@ namespace ForumSystem.App.Areas.Admin.Controllers
                 Author = comment.Author.UserName,
                 Posted = comment.DateOfPost,
                 ParentCommentId = comment.ParentCommentId,
-                Replies = comment.Replies.ToList()
+                Replies = comment.Replies.ToList(),
+                viewModel = new AllCommentsViewModel
+                {
+                    Comments = _services.GetAllReplies(id)
+                },
+                PostId = comment.PostId
             };
 
-            return View(model);
+            return this.View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddComment(string Content, string Author, int ParentCommentId)
+        public async Task<IActionResult> AddComment(int id,string Content, string Author, int ParentCommentId)
         {
 
             var model = new AddReplyBindingModel
@@ -50,19 +56,19 @@ namespace ForumSystem.App.Areas.Admin.Controllers
                 Author = Author,
                 Content = Content,
                 Posted = DateTime.UtcNow,
-                ParentCommentId = ParentCommentId
+                ParentCommentId = ParentCommentId,
             };
 
-            await _services.AddReply(model);
+            await _services.AddReplyAsync(model);
 
-            return RedirectToAction("GetAll", new { ParentCommentId = ParentCommentId });
+            return RedirectToAction("GetAllReplies", new { CommentId = id });
         }
 
 
-        public async Task<IActionResult> GetAll(int CommentId)
+        public IActionResult GetAllReplies(int CommentId)
         {
 
-            var comments = await _services.GetAllReplies(CommentId);
+            var comments = _services.GetAllReplies(CommentId);
 
             var model = new AllCommentsViewModel
             {
@@ -72,27 +78,31 @@ namespace ForumSystem.App.Areas.Admin.Controllers
             return PartialView("~/Areas/Admin/Views/Shared/_Replies.cshtml", model);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Delete(int id)
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id, int PostId)
         {
-            var comment = await _services.GetComment(id);
+            await _services.DeleteCommentAsync(id);
 
-
-
-            var model = new DeleteCommentViewModel
-            {
-                Id = comment.Id,
-            };
-
-            return this.View(model);
+            return RedirectToAction("Details", "Posts", new { id = PostId });
         }
 
         [HttpPost]
-        public async Task<IActionResult> Delete(DeleteCommentViewModel model)
+        public async Task<IActionResult> Edit(int id,string Content, int PostId)
         {
-            await _services.DeleteComment(model.Id);
+            await _services.EditCommentAsync(Content, id);
 
-            return RedirectToAction("Details", "Posts", new { id = model.PostId });
+            return RedirectToAction("Details", "Posts", new { id = PostId });
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteReply(int id)
+        {
+            var comment = await _services.GetCommentAsync(id);
+
+            await _services.DeleteCommentAsync(id);
+
+            return RedirectToAction("Details", "Comments", new { id = comment.ParentCommentId });
         }
 
     }

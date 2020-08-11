@@ -24,7 +24,7 @@ namespace ForumSystem.App.Controllers
 
         public async Task<IActionResult> Details(int id)
         {
-            var topic = await _service.GetTopic(id);
+            var topic = await _service.GetTopicAsync(id);
 
             var model = new TopicsDetialsViewModel
             {
@@ -33,7 +33,7 @@ namespace ForumSystem.App.Controllers
                 Author = topic.Author.UserName,
                 Content = topic.Content,
                 PostedOn = topic.CreatedOn,
-                Posts = await _postsServices.GetAllPosts(id)
+                Posts = _postsServices.GetAllPosts(id)
             };
 
             return View(model);

@@ -1,4 +1,5 @@
 ﻿@model ForumSystem.App.ViewModels.Comments.AllCommentsViewModel
+@inject ForumSystem.App.Services.Interface.ICommentService _service
 @using ForumSystem.App.Common
 
 @foreach (var comment in Model.Comments)
@@ -11,6 +12,18 @@
                 <h5 class="text-right col-6">Posted by @comment.Author.UserName</h5>
             </div>
             <p id="editText" class="card-text">@comment.Content</p>
+        </div>
+        <div class="card-footer row">
+            <div class="col-md-6 text-left">
+                <a asp-controller="Comments" asp-action="Details" asp-route-id="@comment.Id">
+                    <img src="~/css/icons/icons8-chat.svg" alt="Replies" /> @_service.GetAllReplies(comment.Id).Count Replies
+                </a>
+            </div>
+            <div class="col-md-6 text-right">
+                <a asp-controller="Comments" asp-action="Details" asp-route-id="@comment.Id" class="btn btn-primary">
+                    <img src="~/css/icons/icons8-details.svg" alt="Comment Details" /> Details
+                </a>
+            </div>
         </div>
     </div>
 

@@ -1,4 +1,5 @@
 ﻿@model ForumSystem.App.ViewModels.Topics.TopicsDetialsViewModel
+@inject ForumSystem.App.Services.Interface.ICommentService _service
 @using ForumSystem.App.Common
 @{
     ViewData["Title"] = "Details";
@@ -30,8 +31,8 @@
                     @if (User.Identity.Name == post.Author.UserName)
                     {
                         <div class="text-right col-md-8">
-                            <a class="btn btn-info col-md-2 p-2" asp-controller="Posts" asp-action="Edit" asp-route-id="@post.Id">Edit</a>
-                            <a class="btn btn-danger col-md-2 p-2" asp-controller="Posts" asp-action="Delete" asp-route-id="@post.Id">Delete</a>
+                            <a class="btn btn-info col-md-2 p-2" asp-controller="Posts" asp-action="Edit" asp-route-id="@post.Id"><img src="~/css/icons/icons8-edit.svg" alt="Edit" /> Edit</a>
+                            <a class="btn btn-danger col-md-2 p-2" asp-controller="Posts" asp-action="Delete" asp-route-id="@post.Id"><img src="~/css/icons/icons8-trash.svg" alt="Delete" /> Delete</a>
                         </div>
                     }
                 </div>
@@ -40,7 +41,8 @@
                     <p class="card-text">@post.Content<p>
                 </div>
                 <div class="card-footer text-muted row">
-                    <a asp-controller="Posts" asp-action="Details" asp-route-id="@post.Id" class="btn-comment col-md-3 text-left"><i class="fas fa-comment"></i> @post.Comments.Count() Comments</a>
+                    <a asp-controller="Posts" asp-action="Details" asp-route-id="@post.Id" class="btn-comment col-md-3 text-left">
+                    <img src="~/css/icons/icons8-chat.svg" alt="Comments" /> @_service.GetAllComments(post.Id).Count Comments</a>
                     <span class="text-right col-md-9">Author - @post.Author.UserName</span>
                 </div>
             </li>
@@ -50,7 +52,7 @@
     @if (User.Identity.IsAuthenticated)
     {
         <div class="row text-right">
-            <a asp-controller="Posts" asp-action="Create" asp-route-id="@Model.Id" class="btn btn-success col-md-2 text-center"> Create Post</a>
+            <a asp-controller="Posts" asp-action="Create" asp-route-id="@Model.Id" class="btn btn-success col-md-2 text-center"><img src="~/css/icons/icons8-create-post.svg" alt="Create Post" /> Create Post</a>
         </div>
     }
 </div>

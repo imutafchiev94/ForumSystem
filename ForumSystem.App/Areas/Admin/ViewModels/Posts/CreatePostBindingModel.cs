@@ -12,9 +12,13 @@ namespace ForumSystem.App.Areas.Admin.ViewModels.Posts
 
         public int TopicId { get; set; }
 
+        [Required]
+        [MinLength(5, ErrorMessage = "Title must be at least 5 symbols")]
         public string Title { get; set; }
 
+        [Required]
         [DataType(DataType.MultilineText)]
+        [MinLength(50, ErrorMessage = "Content must be at least 50 symbols")]
         public string Content { get; set; }
 
         [DataType(DataType.DateTime)]

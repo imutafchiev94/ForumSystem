@@ -1,57 +1,65 @@
 ﻿@model ForumSystem.App.Areas.Admin.ViewModels.Posts.PostDetailsViewModel
+@inject ForumSystem.App.Areas.Admin.Services.Interfaces.IAdminCommentsServices _service
 @using ForumSystem.App.Common
 @{
     ViewData["Title"] = "Details";
 }
 
-    <div class="text-center row">
-        <div class="card col-md-12">
-            <div class="card-header row">
-                <p class="text-left col-md-4">Posted @TimeFormat.Posted(Model.CreatedOn)</p>
-                <h5 class="col-md-4 text-center">@Model.Title</h5>
-                <p class="text-right col-md-4">Posted by @Model.Author</p>
-            </div>
+<div class="text-center row">
+    <div class="card col-md-12">
+        <div class="card-header row">
+            <p class="text-left col-md-4">Posted @TimeFormat.Posted(Model.CreatedOn)</p>
+            <h5 class="col-md-4 text-center">@Model.Title</h5>
+            <p class="text-right col-md-4">Posted by @Model.Author</p>
+        </div>
 
-            <div class="card-body row">
-                <p class="card-text col-md-12">@Model.Content</p>
-            </div>
-            <div class="card-footer row">
-                <div class="text-right col-md-12">
-                    <a asp-area="Admin" asp-controller="Posts" asp-action="Edit" class="btn btn-primary"><img src="~/css/icons/icons8-edit.svg" /> Edit</a>
-                    <a asp-area="Admin" asp-controller="Posts" asp-action="Delete" class="btn btn-danger"><img src="~/css/icons/icons8-trash.svg" /> Delete</a>
-                </div>
-                <hr />
-                <div class="text-center col-md-12">
-                    <h6>Add your comment</h6>
-                </div>
-                <div id="divMessage" class="text-danger">
-
-                </div>
-                <form id="CommentForm" data-ajax="true" data-ajax-success="myComplete" data-ajax-mode="replace"
-                      data-ajax-update="#AllComments" asp-area="Admin" asp-controller="Posts" asp-action="AddComment" class="col-md-12" data-ajax-method="post">
-                    <div class="form-group">
-                        <textarea id="Content" name="Content" rows="3" cols="30" class="form-control"></textarea>
-                    </div>
-                    <input hidden id="Author" name="Author" value="@User.Identity.Name" />
-                    <input hidden id="PostedOn" name="PostedOn" value="@DateTime.UtcNow" />
-                    <input hidden id="PostId" name="PostId" value="@Model.Id" />
-                    <div class="text-right">
-                        @Html.AntiForgeryToken()
-                        <button name="" type="submit" class="btn btn-success" id="btnsubmit"><img src="~/css/icons/icons8-chat.svg" /> Add Comment</button>
-                    </div>
-                </form>
+        <div class="card-body row">
+            <p class="card-text col-md-12">@Model.Content</p>
+        </div>
+        <div class="card-footer row">
+            <div class="text-right col-md-12">
+                <a asp-area="Admin" asp-controller="Posts" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary"><img src="~/css/icons/icons8-edit.svg" alt="Edit Post"/> Edit</a>
+                <a asp-area="Admin" asp-controller="Posts" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger"><img src="~/css/icons/icons8-trash.svg" alt="Delete Post"/> Delete</a>
             </div>
             <hr />
-            <a hidden asp-area="Admin" asp-controller="Posts" asp-action="GetAll" asp-route-id="@Model.Id" id="refreshComments"
-               data-ajax="true" data-ajax-method="get" data-ajax-mode="replace" data-ajax-update="#AllComments"></a>
-
-            <div id="AllComments">
-                <partial name="~/Areas/Admin/Views/Shared/_Comments.cshtml" model="@Model.viewModel" />
+            <div class="text-center col-md-12">
+                <h6>Add your comment</h6>
             </div>
+            <div id="divMessage" class="text-danger">
+
+            </div>
+            <form id="CommentForm" data-ajax="true" data-ajax-success="myComplete" data-ajax-mode="replace"
+                  data-ajax-update="#AllComments" asp-area="Admin" asp-controller="Posts" asp-action="AddComment" class="col-md-12" data-ajax-method="post">
+                <div class="form-group">
+                    <textarea id="Content" name="Content" rows="3" cols="30" class="form-control"></textarea>
+                </div>
+                <input hidden id="Author" name="Author" value="@User.Identity.Name" />
+                <input hidden id="PostedOn" name="PostedOn" value="@DateTime.UtcNow" />
+                <input hidden id="PostId" name="PostId" value="@Model.Id" />
+                <div class="text-right">
+                    @Html.AntiForgeryToken()
+                    <button name="" type="submit" class="btn btn-success" id="btnsubmit"><img src="~/css/icons/icons8-chat.svg" alt="Add Comment"/> Add Comment</button>
+                </div>
+            </form>
         </div>
-        <br />
+        <hr />
+        <a hidden asp-area="Admin" asp-controller="Posts" asp-action="GetAll" asp-route-id="@Model.Id" id="refreshComments"
+           data-ajax="true" data-ajax-method="get" data-ajax-mode="replace" data-ajax-update="#AllComments"></a>
+
+        <div id="AllComments">
+            <partial name="~/Areas/Admin/Views/Shared/_Comments.cshtml" model="@Model.viewModel" />
+        </div>
     </div>
     <br />
+</div>
+
+<div class="text-right mt-2">
+    <a asp-area="Admin" asp-controller="Topics" asp-action="Details" asp-route-id="@Model.TopicId" class="btn btn-secondary">
+        <img src="~/css/icons/icons8-cancel.svg" alt="Cancel" /> Cancel
+    </a>
+</div>
+
+<br />
 @section Scripts {
     <script>
         function myComplete(data) {

@@ -18,9 +18,10 @@ namespace ForumSystem.App.Services
             _dbContext = dbContext;
         }
 
-        public async Task<List<Topic>> GetAllTopics()
+        public async Task<List<Topic>> GetAllTopicsAsync()
         {
-            var topics = await _dbContext.Topics.Include(t => t.Author).Where(t => t.IsDelete == false).ToListAsync();
+            var topics = await _dbContext.Topics.Include(t => t.Author).Include(t => t.Posts).Where(t => t.IsDelete == false)
+                .OrderByDescending(t => t.CreatedOn).ToListAsync();
 
             return topics;
         }

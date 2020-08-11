@@ -109,7 +109,7 @@ namespace ForumSystem.App.Areas.Identity.Pages.Account
                 else
                 {
                     
-                    if(!(await _userManager.IsEmailConfirmedAsync(user)))
+                    if(user != null && !(await _userManager.IsEmailConfirmedAsync(user)))
                     {
                         ModelState.AddModelError(string.Empty, "Your email is not confirmed. Please Confirm it");
                         return Page();

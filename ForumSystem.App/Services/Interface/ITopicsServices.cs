@@ -9,7 +9,7 @@ namespace ForumSystem.App.Services.Interface
     public interface ITopicsServices
     {
 
-        public Task<Topic> GetTopic(int id); 
+        public Task<Topic> GetTopicAsync(int id); 
 
     }
 }

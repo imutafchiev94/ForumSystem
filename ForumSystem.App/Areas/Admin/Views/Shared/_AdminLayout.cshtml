@@ -23,17 +23,17 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="Admin" asp-controller="Home" asp-action="Index">
-                            <img src="~/css/icons/icons8-home-page.svg"/> Home</a>
+                            <img src="~/css/icons/icons8-home-page.svg" alt="Home"/> Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="Admin" asp-controller="Home" asp-action="Privacy">
-                            <img src="~/css/icons/icons8-privacy-policy.svg"/> Privacy</a>
+                            <img src="~/css/icons/icons8-privacy-policy.svg" alt="Privace"/> Privacy</a>
                         </li>
                         @if (User.IsInRole("Admin"))
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">
-                                    <img src="~/css/icons/icons8-user-male.svg" /> User
+                                    <img src="~/css/icons/icons8-user-male.svg" alt="User"/> User
                                 </a>
                             </li>
                         }

@@ -19,7 +19,7 @@ namespace ForumSystem.App.Areas.Admin.Services
             _dbContext = dbContext;
         }
 
-        public async Task AddComment(AddCommentBindingModel model)
+        public async Task AddCommentAsync(AddCommentBindingModel model)
         {
             var author = await _dbContext.Users.FirstOrDefaultAsync(a => a.UserName == model.Author);
 
@@ -35,7 +35,7 @@ namespace ForumSystem.App.Areas.Admin.Services
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task AddReply(AddReplyBindingModel model)
+        public async Task AddReplyAsync(AddReplyBindingModel model)
         {
             var author = await _dbContext.Users.FirstOrDefaultAsync(a => a.UserName == model.Author);
             var parent = await _dbContext.Comments.FirstOrDefaultAsync(c => c.Id == model.ParentCommentId);
@@ -49,42 +49,71 @@ namespace ForumSystem.App.Areas.Admin.Services
                 ParentCommentId = model.ParentCommentId
             };
 
+            parent.Replies.ToList().Add(comment);
             await _dbContext.Comments.AddAsync(comment);
+            _dbContext.Comments.Update(parent);
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task DeleteComment(int id)
+        public async Task DeleteCommentAsync(int id)
         {
             var comment = await _dbContext.Comments.FirstOrDefaultAsync(c => c.Id == id);
+
+            if (comment == null)
+            {
+                throw new NullReferenceException($"Comment with {id} doesn't exist");
+            }
+
             comment.IsDelete = true;
 
             _dbContext.Comments.Update(comment);
             await _dbContext.SaveChangesAsync();
         }
 
-        public Task<Comment> EditComment(string content, int id)
+        public async Task<Comment> EditCommentAsync(string content, int id)
         {
-            throw new NotImplementedException();
+            var comment = await _dbContext.Comments.FirstOrDefaultAsync(c => c.Id == id);
+
+            if (comment == null)
+            {
+                throw new NullReferenceException($"Comment with {id} doesn't exist");
+            }
+
+
+            comment.Content = content;
+
+            _dbContext.Comments.Update(comment);
+            await _dbContext.SaveChangesAsync();
+
+            return comment;
         }
 
         public List<Comment> GetAllComments(int id)
         {
-            var comments =  _dbContext.Comments.Where(c => c.PostId == id).Where(c => c.IsDelete == false).Include(c => c.Author).OrderByDescending(c => c.DateOfPost).ToList();
+            var comments =  _dbContext.Comments.Where(c => c.PostId == id).Where(c => c.IsDelete == false).
+                Where(c => c.ParentCommentId == 0).Include(c => c.Author).OrderByDescending(c => c.DateOfPost).ToList();
 
             return comments;
         }
 
-        public async Task<List<Comment>> GetAllReplies(int id)
+        public List<Comment> GetAllReplies(int id)
         {
-            var comments = await _dbContext.Comments.Include(c => c.Author).Include(c => c.Post).Where(c => c.IsDelete == false)
-                .Where(c => c.ParentCommentId == id).ToListAsync();
+            var comments =  _dbContext.Comments.Include(c => c.Author).Include(c => c.Post).Where(c => c.IsDelete == false)
+                .Where(c => c.ParentCommentId == id).OrderByDescending(c => c.DateOfPost).ToList();
 
             return comments;
         }
 
-        public async Task<Comment> GetComment(int id)
+        public async Task<Comment> GetCommentAsync(int id)
         {
-            var comment = await _dbContext.Comments.Include(c => c.Author).Include(c => c.Post).FirstOrDefaultAsync(c => c.Id == id);
+            var comment = await _dbContext.Comments.Include(c => c.Author).Include(c => c.Post)
+                .FirstOrDefaultAsync(c => c.Id == id);
+
+            if (comment == null)
+            {
+                throw new NullReferenceException($"Comment with {id} doesn't exist");
+            }
+
 
             return comment;
         }
